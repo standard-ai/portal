@@ -1,0 +1,24 @@
+{
+  "name": "@standard/auth",
+  "version": "1.0.0-alpha.1",
+  "private":true,
+  "description": "component that will required the user to be authenticated before displaying anything else. ",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Standard-Cognition/authentication.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Standard-Cognition/authentication/issues"
+  },
+  "homepage": "https://github.com/Standard-Cognition/authentication#readme",
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  }
+}
