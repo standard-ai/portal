@@ -1,12 +1,10 @@
 {
   "name": "@standard/auth",
   "version": "1.0.0-alpha.1",
-  "private":true,
+  "private": true,
   "description": "component that will required the user to be authenticated before displaying anything else. ",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Standard-Cognition/authentication.git"
