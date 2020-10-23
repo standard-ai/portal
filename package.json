@@ -3,7 +3,7 @@
   "version": "1.0.0-alpha.1",
   "private": true,
   "description": "component that will required the user to be authenticated before displaying anything else. ",
-  "main": "index.js",
+  "main": "index.min.js",
   "scripts": {
     "build": "webpack -c",
     "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'",
@@ -25,10 +25,6 @@
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
-  "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
@@ -40,7 +36,9 @@
     "styled-components": "^5.2.0",
     "use-async-effect": "^2.2.2",
     "webpack": "^4.25.0",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   },
   "babel": {
     "presets": [
