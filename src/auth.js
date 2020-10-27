@@ -1,59 +1,42 @@
-import Auth0 from "auth0-js";
+// This is a thin wrapper around auth0.js to handle all of the environment
+// variables properly
 import makeAbsolute from "./makeAbsolute";
+import { Auth0Client } from "@auth0/auth0-spa-js";
 
 const {
   REACT_APP_AUTH_DOMAIN,
   REACT_APP_AUTH_CLIENT_ID,
   REACT_APP_AUTH_AUDIENCE,
-  REACT_APP_AUTH_REDIRECT = "/",
   REACT_APP_AUTH_RETURN_TO = "/",
-  REACT_APP_AUTH_RESPONSE_TYPE = "token id_token",
-  REACT_APP_AUTH_SCOPE = "openid profile email"
+  REACT_APP_AUTH_REDIRECT = "/"
 } = process.env;
 
-const auth = new Auth0.WebAuth({
+const auth0 = new Auth0Client({
   domain: REACT_APP_AUTH_DOMAIN,
-  clientID: REACT_APP_AUTH_CLIENT_ID,
+  client_id: REACT_APP_AUTH_CLIENT_ID,
   audience: REACT_APP_AUTH_AUDIENCE,
-  redirectUri: makeAbsolute(REACT_APP_AUTH_REDIRECT),
-  responseType: REACT_APP_AUTH_RESPONSE_TYPE,
-  scope: REACT_APP_AUTH_SCOPE
+  redirect_uri: makeAbsolute(REACT_APP_AUTH_REDIRECT),
+  useRefreshTokens: true,
+  cacheLocation: "localstorage"
 });
 
-const userInfo = token => {
-  return new Promise((done, fail) => {
-    auth.client.userInfo(token, (error, data) =>
-      error ? fail(error) : done(data)
-    );
-  });
+const auth = {};
+
+// Extend the auth0 object
+for (let key in auth0) {
+  auth[key] = (...args) => auth0[key](...args);
+}
+
+// Extend how auth0 handles global variables and such
+auth.login = () => {
+  return auth0.loginWithRedirect();
 };
 
-// Check if there's any error in the URL hash
-const parseHashError = hash => {
-  const encoded = hash
-    .slice(1)
-    .split("&")
-    .find(err => err.includes("error_description"))
-    .split("=")
-    .pop();
-  return decodeURIComponent(encoded);
-};
-
-const parseHash = hash => {
-  return new Promise((done, fail) => {
-    auth.parseHash({ hash }, (error, data) =>
-      error ? fail(error) : done(data)
-    );
-  });
-};
-
-const login = () => auth.authorize();
-
-const logout = () => {
-  return auth.logout({
-    clientID: REACT_APP_AUTH_CLIENT_ID,
+auth.logout = () => {
+  return auth0.logout({
+    client_id: REACT_APP_AUTH_CLIENT_ID,
     returnTo: makeAbsolute(REACT_APP_AUTH_RETURN_TO)
   });
 };
 
-export default { login, logout, userInfo, parseHashError, parseHash };
+export default auth;

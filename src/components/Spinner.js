@@ -10,11 +10,9 @@ const FullPage = styled.div`
   justify-content: center;
   transition: all 0.3s ease;
   transform: scale(50%);
-
   background: white;
   opacity: 0;
   pointer-events: none;
-
   ${p =>
     p.active &&
     `
@@ -28,7 +26,6 @@ const Spin = styled.div`
   font-size: 10px;
   width: 200px;
   height: 200px;
-
   ::before,
   ::after {
     display: block;
@@ -42,7 +39,6 @@ const Spin = styled.div`
     border-radius: 50%;
     box-sizing: border-box;
   }
-
   ::before {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItdXNlciI+PHBhdGggZD0iTTIwIDIxdi0yYTQgNCAwIDAgMC00LTRIOGE0IDQgMCAwIDAtNCA0djIiPjwvcGF0aD48Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiPjwvY2lyY2xlPjwvc3ZnPg==");
     ${p => p.img && `background-image: url("${p.img}");`}
@@ -50,7 +46,6 @@ const Spin = styled.div`
     background-repeat: no-repeat;
     background-size: 60px;
   }
-
   ::after {
     border: 10px solid #137bd633;
     border-top: 10px solid #137bd6;
@@ -59,7 +54,6 @@ const Spin = styled.div`
     // second as well and do "full_unix_time%duration"
     animation: spin 1s infinite linear -${p => p.ms}s;
   }
-
   @keyframes spin {
     0% {
       -webkit-transform: rotate(0deg);
