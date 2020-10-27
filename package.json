@@ -1,6 +1,6 @@
 {
   "name": "@standard/auth",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "component that will required the user to be authenticated before displaying anything else. ",
   "main": "index.min.js",
   "scripts": {
@@ -37,7 +37,8 @@
     "styled-components": "^5.2.0",
     "use-async-effect": "^2.2.2",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "@auth0/auth0-spa-js": "^1.13.0"
   },
   "babel": {
     "presets": [
@@ -45,9 +46,5 @@
       "@babel/preset-react"
     ],
     "plugins": []
-  },
-  "dependencies": {
-    "@auth0/auth0-spa-js": "^1.13.0",
-    "auth0-spa-js": "^1.6.5"
   }
 }
