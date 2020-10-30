@@ -61,7 +61,7 @@ export default ({ onUser, showProfile = true, children }) => {
     }
 
     try {
-      await getToken();
+      const token = await getToken();
       const raw = await auth.getUser();
       if (raw) {
         const profile = {
@@ -70,8 +70,15 @@ export default ({ onUser, showProfile = true, children }) => {
           email: raw.email,
           img: raw.picture
         };
+        if (onUser) {
+          try {
+            await onUser(profile, token);
+          } catch (error) {
+            setError(error);
+            throw error;
+          }
+        }
         setUser(profile);
-        if (onUser) onUser(profile);
       }
     } catch (e) {
       // Noop
