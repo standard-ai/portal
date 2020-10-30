@@ -1,28 +1,65 @@
-# Standard Gateway
+# Standard Portal
 
-This is a React wrapper component that will required the user to be authenticated before displaying anything else. Usage is simple:
+This is a React + Auth0 library to easily handle authentication for internal apps with minimal overhead. We made it because we have multiple apps that use Auth, and it's a lot easier to create a reusable module based on some conventions than doing it from scratch every time or maintaining copies. It includes:
+
+- Automatic configuration from environment variables
+- Shows "Login Page" and blocks children until the user has logged in
+- Top-right default mini profile once logged in for easy session management
+- Refresh token and all other nice Auth0 logic included
+- React Hooks and some other useful API elements for light customization
+
+**SCREENSHOT** & **SCREENSHOT**
 
 ```js
-// App.js
-import React from "react";
-import Auth, { useAuth } from "./Auth";
+// App.js - The code for the screenshot above:
+import Portal from "@standard/portal";
 
-const Logout = () => {
-  const { user, logout } = useAuth();
-  return <button onClick={logout}>{user.name} Logout</button>;
-};
-
+// Just a plain <Auth> wrapper includes a lot of goodies:
 export default () => (
-  <Auth>
+  <Portal>
     <div>Your normal App code here...</div>
-  </Auth>
+  </Portal>
 );
 ```
 
-It will read your environment variables to find the proper Auth ones:
+If you don't like e.g. the default profile on the top-right, you can easily customize it:
+
+**SCREENSHOT**
+
+```js
+// App.js
+import Portal, { useProfile } from "@standard/portal";
+
+const Greeting = () => {
+  const user = useProfile();
+  return (
+    <div class="CustomProfile">
+      <p>Hi {user.name}!</p>
+      <button onClick={logout}>Logout</button>
+    </div>
+  );
+};
+
+export default () => (
+  <Portal>
+    <Greeting />
+    <div>Your normal App code here...</div>
+  </Portal>
+);
+```
+
+## Getting started
+
+### Installing
+
+### Auth0 setup
+
+### Configuration
+
+The configuration is read from the **environment variables**:
 
 ```
-# Required variables
+# Required variables from Auth0
 REACT_APP_AUTH_CLIENT_ID=
 REACT_APP_AUTH_DOMAIN=
 REACT_APP_AUTH_AUDIENCE=
@@ -31,27 +68,26 @@ REACT_APP_AUTH_AUDIENCE=
 REACT_APP_AUTH_REDIRECT=/
 REACT_APP_AUTH_RESPONSE_TYPE=token id_token
 REACT_APP_AUTH_SCOPE=openid profile email
-REACT_APP_AUTH_RETURN_TO=https://homepage.com/
+REACT_APP_AUTH_RETURN_TO=/
 ```
 
-### API
+## API
 
 ```js
-import Auth, { useAuth } from './Auth';
-<Auth onUser={fn}>
-const { user, token, logout } = useAuth();  // A Hook
-user.id;
-user.name;
-user.email;
-user.img;
-await logout();
+import Portal, { useProfile, getToken, logout, AuthContext } from '@standard/portal';
+<Portal onUser={fn} showProfile={true}>   // A component that accepts an `onUser` function and showProfile boolean
+const profile = useProfile();  // A React Hook
+const { id, name, email, img } = useProfile();  // A React Hook
+await logout();      // A function that will log the user out
 ```
+
+### <Portal />
+
 
 It also exposes a single event, `onUser`, for whenever a user logs in. This is useful for e.g. attaching the user to Sentry:
 
 ```js
-import React from "react";
-import Auth from "./Auth";
+import Portal from "@standard/portal";
 import * as Sentry from "@sentry/browser";
 
 // Register the user on Sentry
@@ -62,112 +98,54 @@ const onUser = ({ name, email }, token) => {
 };
 
 export default () => (
-  <Auth onUser={onUser}>
+  <Portal onUser={onUser}>
     <div>Your normal App code here...</div>
-  </Auth>
+  </Portal>
 );
 ```
 
-If you want to add a listener to both login and logout, your best bet for now is using a listener just below:
+### useProfile()
+
+### await getToken()
+
+### await logout()
+
+### AuthContext
+
+
+## Examples
+
+### API token
+
+### Sentry integration
+
+We can register the user on Sentry (error reporting) taking advantage of `onUser`:
 
 ```js
-const UserListener = () => {
-  const { token } = useAuth();
-  useEffect(() => {});
+import React from "react";
+import Portal from "@standard/portal";
+import * as Sentry from "@sentry/browser";
+
+// Register the user on Sentry
+const onUser = ({ name, email }, token) => {
+  Sentry.configureScope(function(scope) {
+    scope.setUser({ username: name, email });
+  });
 };
 
 export default () => (
-  <Auth onUser={onUser}>
-    <UserListener />
+  <Portal onUser={onUser}>
     <div>Your normal App code here...</div>
-  </Auth>
+  </Portal>
 );
 ```
 
-## Profile
+### Custom Profile
 
-A fully working example implementation of a user profile:
+### Loading
 
-```js
-import React, { useState } from "react";
-import styled from "styled-components";
 
-import { useAuth } from "./Auth";
 
-const Floating = styled.div`
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 60px;
-  height: 60px;
-  background: white;
-  border-radius: 50%;
-  z-index: 100;
-`;
 
-const Picture = styled.img`
-  width: 100%;
-  border-radius: 50%;
-  float: right;
-  cursor: pointer;
-`;
 
-const Box = styled.div`
-  position: fixed;
-  top: 80px;
-  right: 10px;
-  border: 2px solid #ccc;
-  background: white;
-  border-radius: 4px;
-  padding: 10px 15px;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
 
-  ${p =>
-    p.visible &&
-    `
-    opacity: 1;
-    transform: translateY(0);
-  `}
-
-  &::before {
-    position: fixed;
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    border: 8px solid black;
-    top: -8px;
-    right: 20px;
-    border-width: 0 8px 8px 8px;
-    border-color: transparent transparent #ccc transparent;
-  }
-`;
-
-const Link = styled.button`
-  background-color: transparent;
-  border: none;
-  color: #0645ad;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: inherit;
-  display: inline;
-  margin: 0;
-  padding: 0;
-`;
-
-export default function Profile() {
-  const { user, logout } = useAuth();
-  const [show, setShow] = useState(false);
-  return (
-    <Floating>
-      <Picture onClick={() => setShow(!show)} src={user.img} />
-      <Box visible={show}>
-        <div>{user.name}</div>
-        <Link onClick={logout}>Logout</Link>
-      </Box>
-    </Floating>
-  );
-}
-```
