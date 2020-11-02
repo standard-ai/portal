@@ -22,8 +22,7 @@
   "homepage": "https://github.com/Standard-Cognition/authentication#readme",
   "peerDependencies": {
     "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "styled-components": "^5.2.0"
+    "react-dom": "^16.14.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -35,6 +34,7 @@
     "brownies": "^3.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "styled-components": "^5.2.0",
     "regenerator-runtime": "^0.13.7",
     "use-async-effect": "^2.2.2",
     "webpack": "^4.44.2",
