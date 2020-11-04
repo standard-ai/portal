@@ -24,7 +24,7 @@ Portal preview:
       <img src="/standard-ai/portal/raw/master/assets/home-login.jpg" width="600px" />
     </td>
     <td>
-      <img src="/Standard-Cognition/portal/raw/master/assets/profile.gif" width="300px" />
+      <img src="/standard-ai/portal/raw/master/assets/profile.gif" width="300px" />
     </td>
   </tr>
 </table>
