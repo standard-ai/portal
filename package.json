@@ -3,6 +3,7 @@
   "version": "1.0.0-alpha.2",
   "description": "component that will required the user to be authenticated before displaying anything else. ",
   "main": "index.min.js",
+  "files": [],
   "scripts": {
     "build": "webpack -c",
     "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'",
