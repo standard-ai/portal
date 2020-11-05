@@ -8,7 +8,26 @@ This is a React + Auth0 library to easily handle authentication for internal app
 - Refresh token and all other nice Auth0 logic included
 - React Hooks and some other useful API elements for light customization
 
-**SCREENSHOT** & **SCREENSHOT**
+Portal preview:
+
+<table>
+  <tr>
+    <th>
+      Portal home page
+    </th>
+    <th>
+      Logged-in profile
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <img src="/standard-ai/portal/raw/master/assets/home-login.jpg" width="600px" />
+    </td>
+    <td>
+      <img src="/standard-ai/portal/raw/master/assets/profile.gif" width="300px" />
+    </td>
+  </tr>
+</table>
 
 ```js
 // App.js - The code for the screenshot above:
@@ -22,9 +41,7 @@ export default () => (
 );
 ```
 
-If you don't like e.g. the default profile on the top-right, you can easily customize it:
-
-**SCREENSHOT**
+If you don't like e.g. the default profile on the top-right, you can easily remove it and provide your own:
 
 ```js
 // App.js
@@ -50,9 +67,40 @@ export default () => (
 
 ## Getting started
 
+This is the _quick guide_ on how to get started, please see below each individual step for more comprehensive information.
+
+First install this library:
+
+```bash
+npm i @standard/portal
+```
+
+Then provide the Auth0 config as environment variables:
+
+```
+# Find this in Auth0
+REACT_APP_AUTH_CLIENT_ID=
+REACT_APP_AUTH_DOMAIN=
+REACT_APP_AUTH_AUDIENCE=
+```
+
 ### Installing
 
+This library has `styled-components` as a peer dependency. If you are already using it, great! No need to do anything besides installing this library:
+
+```bash
+npm i @standard/portal
+```
+
+If you are not using `styled-components`, you still need to install it and provide it for this library, which can be done both at the same time with:
+
+```bash
+npm i styled-components @standard/portal
+```
+
 ### Auth0 setup
+
+...
 
 ### Configuration
 
@@ -81,8 +129,9 @@ const { id, name, email, img } = useProfile();  // A React Hook
 await logout();      // A function that will log the user out
 ```
 
-### <Portal />
+The main portal _title_ will be taken from the `<head><title>...</title></head>`, and the background image must be available under the route `/portal-background.jpg`.
 
+### <Portal />
 
 It also exposes a single event, `onUser`, for whenever a user logs in. This is useful for e.g. attaching the user to Sentry:
 
@@ -111,7 +160,6 @@ export default () => (
 ### await logout()
 
 ### AuthContext
-
 
 ## Examples
 
@@ -143,9 +191,3 @@ export default () => (
 ### Custom Profile
 
 ### Loading
-
-
-
-
-
-

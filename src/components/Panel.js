@@ -7,7 +7,7 @@ const FullPage = styled.div`
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background: url("/login-background.png");
+  background: url("/portal-background.jpg");
   background-size: cover;
 `;
 
