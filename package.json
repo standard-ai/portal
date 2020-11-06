@@ -7,9 +7,7 @@
   "scripts": {
     "analyze": "webpack -c --profile --json > webpack-stats.json",
     "build": "webpack -c",
-    "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'",
-    "test": "jest --coverage",
-    "watch": "jest --watch"
+    "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'"
   },
   "repository": {
     "type": "git",
