@@ -23,7 +23,7 @@ const Error = styled.p`
 `;
 
 export default ({ error, onLogin }) => (
-  <Panel className="standard-portal">
+  <Panel>
     <Title>{document.title || "User Login"}</Title>
     <p>You need an account and to be logged in to use this page:</p>
     <Button onClick={onLogin}>Login</Button>

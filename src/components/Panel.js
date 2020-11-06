@@ -24,7 +24,7 @@ const Panel = styled.div`
 `;
 
 export default ({ loading, children }) => (
-  <FullPage>
+  <FullPage className="standard-portal">
     <Panel>{children}</Panel>
   </FullPage>
 );
