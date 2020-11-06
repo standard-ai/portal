@@ -1,7 +1,9 @@
 {
   "name": "@standard/portal",
   "version": "0.2.1",
-  "description": "component that will required the user to be authenticated before displaying anything else",
+  "description": "Easily add a login portal to any React app with Auth0",
+  "author": "",
+  "license": "UNLICENSED",
   "main": "index.min.js",
   "files": [],
   "scripts": {
@@ -9,16 +11,9 @@
     "build": "webpack -c",
     "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Standard-Cognition/authentication.git"
-  },
-  "author": "",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/Standard-Cognition/authentication/issues"
-  },
-  "homepage": "https://github.com/Standard-Cognition/authentication#readme",
+  "homepage": "https://github.com/standard-ai/portal#readme",
+  "bugs": "https://github.com/standard-ai/portal/issues",
+  "repository": "github:standard-ai/portal",
   "dependencies": {
     "styled-components": "^5.2.0"
   },

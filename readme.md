@@ -1,14 +1,12 @@
 # Standard Portal
 
-This is a React + Auth0 library to easily handle authentication for internal apps with minimal overhead. We made it because we have multiple apps that use Auth, and it's a lot easier to create a reusable module based on some conventions than doing it from scratch every time or maintaining copies. It includes:
+Add a login portal to any React App with minimal overhead using Auth0. We made it because we have multiple apps that use Auth, and it's a lot easier to create a reusable module based on some conventions than doing it from scratch every time or maintaining copies. It includes:
 
 - Automatic configuration from environment variables
 - Shows "Login Page" and blocks children until the user has logged in
 - Top-right default mini profile once logged in for easy session management
 - Refresh token and all other nice Auth0 logic included
 - React Hooks and some other useful API elements for light customization
-
-Portal preview:
 
 <table>
   <tr>
@@ -114,6 +112,14 @@ REACT_APP_AUTH_REDIRECT=/
 REACT_APP_AUTH_RESPONSE_TYPE=token id_token
 REACT_APP_AUTH_SCOPE=openid profile email
 REACT_APP_AUTH_RETURN_TO=/
+```
+
+## Styling
+
+```
+.standard-portal {
+  ...
+}
 ```
 
 ## API

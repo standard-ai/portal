@@ -5,7 +5,6 @@ import Panel from "./Panel";
 const Title = styled.h1`
   margin: 0;
   padding: 0;
-  margin-bottom: 10px;
 `;
 
 const Button = styled.button`
