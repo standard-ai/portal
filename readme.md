@@ -21,10 +21,10 @@ Portal preview:
   </tr>
   <tr>
     <td>
-      <img src="/standard-ai/portal/raw/master/assets/home-login.jpg" width="600px" />
+      <img src="./assets/home-login.jpg" width="600px" />
     </td>
     <td>
-      <img src="/standard-ai/portal/raw/master/assets/profile.gif" width="300px" />
+      <img src="./assets/profile.gif" width="300px" />
     </td>
   </tr>
 </table>
@@ -58,7 +58,7 @@ const Greeting = () => {
 };
 
 export default () => (
-  <Portal>
+  <Portal showProfile={false}>
     <Greeting />
     <div>Your normal App code here...</div>
   </Portal>
@@ -67,9 +67,7 @@ export default () => (
 
 ## Getting started
 
-This is the _quick guide_ on how to get started, please see below each individual step for more comprehensive information.
-
-First install this library:
+This is the _quick guide_ on how to get started. First install this library:
 
 ```bash
 npm i @standard/portal
@@ -84,30 +82,29 @@ REACT_APP_AUTH_DOMAIN=
 REACT_APP_AUTH_AUDIENCE=
 ```
 
-### Installing
+Finally set it up. Normally just dropping it on your `App.js` it's enough!
 
-This library has `styled-components` as a peer dependency. If you are already using it, great! No need to do anything besides installing this library:
+```js
+// App.js
+import Portal from "@standard/portal";
 
-```bash
-npm i @standard/portal
+export default () => (
+  <Portal>
+    <div>Your normal App code here...</div>
+  </Portal>
+);
 ```
 
-If you are not using `styled-components`, you still need to install it and provide it for this library, which can be done both at the same time with:
+Finally put an image on your `/portal-background.jpg` to use as the fullscreen background of the portal.
 
-```bash
-npm i styled-components @standard/portal
-```
+This so far will only provide a plain frontend-only auth. But your data should be locked up behind auth, so you will need to pass the auth token at least to the API. For this you would usually use either the [`<Portal onUser={fn}>...</Portal>`](#portal) callback, or the [`await getToken()`](#await-gettoken) exported function.
 
-### Auth0 setup
+## Configuration
 
-...
-
-### Configuration
-
-The configuration is read from the **environment variables**:
+The configuration is automatically read from the **environment variables**. These are all of the variables that you can setup:
 
 ```
-# Required variables from Auth0
+# Required variables from Auth0:
 REACT_APP_AUTH_CLIENT_ID=
 REACT_APP_AUTH_DOMAIN=
 REACT_APP_AUTH_AUDIENCE=
