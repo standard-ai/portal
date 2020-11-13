@@ -275,7 +275,69 @@ Just the [React Context](https://reactjs.org/docs/context.html) that we are usin
 
 ### API token
 
-> TODO: example of how to setup the API with Axios so that it uses the token we have
+The simplest way of using the token is through the hook `onUser`:
+
+```js
+// NOT RECOMMENDED
+import Portal from "portal";
+import axios from "axios";
+
+const onUser = (user, token) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
+export default () => <Portal onUser={onUser}>...</Portal>;
+```
+
+However, this is **not recommended** because if your backend is well configured, when the token expires it will still be used and the backend will have no other option but to return an error.
+
+Instead, you should use the function `getToken()` on every request. This is normally instantaneously since it's using a locally cached copy, but on the event that it's expired:
+
+- It will attempt to refresh it on the background with an internal refreshToken
+- It will throw if even the refreshToken has expired
+
+A full implementation for your API would look normally more like this:
+
+```js
+// api.js
+import axios from "axios";
+import { getToken, logout } from "@standard/portal";
+
+// Create the API from an axios instance using the endpoint from the env config
+const api = axios.create({ baseURL: process.env.REACT_APP_API });
+
+// Intercept each request to inject the token and handle logouts
+api.interceptors.request.use(
+  async config => {
+    try {
+      // Grabs the local token, or refreshes it and loads it asynchronously
+      const accessToken = await getToken();
+      config.headers = { authorization: `Bearer ${accessToken}` };
+    } catch (error) {
+      console.warn("Cannot find Auth0 session token; forced logout");
+      await logout();
+      throw error;
+    }
+    return config;
+  },
+  err => err
+);
+
+// Intercept each response to deal with logouts if your API returns 401s there
+api.interceptors.response.use(
+  res => res,
+  async error => {
+    if (error.response && error.response.status === 401) {
+      const msg = "Session in backend expired; forced logout";
+      console.warn(msg);
+      await logout();
+    }
+    throw error;
+  }
+);
+
+export default api;
+```
 
 ### Sentry integration
 
@@ -324,10 +386,6 @@ export default () => (
   </Portal>
 );
 ```
-
-### Loading
-
-> TODO: Example of how to use this for loading data after the user has logged in
 
 ## Thanks
 
