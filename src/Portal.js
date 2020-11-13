@@ -108,7 +108,7 @@ export default ({ onUser, showProfile = true, children }) => {
 
   return (
     <>
-      <Spinner active={loading} />,
+      <Spinner active={loading} />
       <Login error={error} onLogin={onLogin} />
     </>
   );

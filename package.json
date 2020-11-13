@@ -1,6 +1,6 @@
 {
   "name": "@standard/portal",
-  "version": "0.2.1",
+  "version": "0.3.1",
   "description": "Easily add a login portal to any React app with Auth0",
   "author": "",
   "license": "MIT",
