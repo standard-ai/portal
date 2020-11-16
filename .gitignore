@@ -1,6 +1,9 @@
 # Not for Git
 public/scans
 
+# Built version
+index.min.js
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
