@@ -5,7 +5,12 @@
   "homepage": "https://github.com/standard-ai/portal#readme",
   "bugs": "https://github.com/standard-ai/portal/issues",
   "repository": "github:standard-ai/portal",
-  "author": "",
+  "contributors": [
+    "Standard Cognition (https://standard.ai/) <jobs@standard.ai>",
+    "Maytee Chinavanichkit",
+    "Francisco Presencia (https://francisco.io/)",
+    "Mohamed Almahbashi (https://github.com/mohawow)",
+  ],
   "license": "MIT",
   "main": "index.min.js",
   "files": [],
