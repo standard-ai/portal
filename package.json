@@ -18,8 +18,8 @@
     "styled-components": "^5.2.0"
   },
   "peerDependencies": {
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -29,8 +29,8 @@
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
     "brownies": "^3.0.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "regenerator-runtime": "^0.13.7",
     "use-async-effect": "^2.2.2",
     "webpack": "^4.44.2",
