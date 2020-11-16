@@ -10,9 +10,9 @@
   "main": "index.min.js",
   "files": [],
   "scripts": {
-    "analyze": "webpack -c --profile --json > webpack-stats.json",
     "build": "webpack -c",
-    "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'"
+    "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'",
+    "stats": "webpack -c --profile --json > webpack-stats.json"
   },
   "dependencies": {
     "styled-components": "^5.2.0"
