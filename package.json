@@ -2,6 +2,9 @@
   "name": "@standard/portal",
   "version": "0.3.1",
   "description": "Easily add a login portal to any React app with Auth0",
+  "homepage": "https://github.com/standard-ai/portal#readme",
+  "bugs": "https://github.com/standard-ai/portal/issues",
+  "repository": "github:standard-ai/portal",
   "author": "",
   "license": "MIT",
   "main": "index.min.js",
@@ -11,9 +14,6 @@
     "build": "webpack -c",
     "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'"
   },
-  "homepage": "https://github.com/standard-ai/portal#readme",
-  "bugs": "https://github.com/standard-ai/portal/issues",
-  "repository": "github:standard-ai/portal",
   "dependencies": {
     "styled-components": "^5.2.0"
   },
@@ -22,20 +22,19 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
+    "@auth0/auth0-spa-js": "^1.13.0",
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "auth0-js": "^9.14.0",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
-    "brownies": "^3.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "regenerator-runtime": "^0.13.7",
     "use-async-effect": "^2.2.2",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.1.2",
-    "@auth0/auth0-spa-js": "^1.13.0"
+    "webpack-cli": "^3.1.2"
   },
   "babel": {
     "presets": [

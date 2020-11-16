@@ -1,4 +1,3 @@
-import { local } from "brownies";
 import auth from "./auth";
 
 export default (url = window.location.pathname) => {
@@ -9,7 +8,7 @@ export default (url = window.location.pathname) => {
     // does not support dynamic redirect URLs:
     // https://community.auth0.com/t/callback-url-wildcard-to-avoid-explicit-index-html/6992/2
     // https://community.auth0.com/t/back-url-on-logout-and-redirect-to-back-url-after-login/39076/2
-    local.redirect = url;
+    localStorage.redirect = url;
   }
 
   // This redirects to the Auth0 page and then back, so there's always a refresh

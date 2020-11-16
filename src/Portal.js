@@ -1,7 +1,6 @@
 import makeAbsolute from "./makeAbsolute";
 import auth from "./auth";
 import React, { useState } from "react";
-import { local } from "brownies";
 import useAsyncEffect from "use-async-effect";
 import Spinner from "./components/Spinner";
 import Login from "./components/Login";
@@ -23,7 +22,7 @@ const shouldAuth = url => {
 
 // There's a token in localStorage; so there'll be an API call to verify it
 const shouldGetProfile = () => {
-  const keys = Object.keys(local);
+  const keys = Object.keys(localStorage);
   return Boolean(keys.find(key => /auth0spajs/.test(key)));
 };
 
@@ -48,9 +47,10 @@ export default ({ onUser, showProfile = true, children }) => {
       if (shouldAuth(url)) {
         await auth.handleRedirectCallback(url.href);
         // Redirect if asked to do it, and only if we are not currently there
-        if (local.redirect && local.redirect !== url.pathname + url.search) {
-          replace(local.redirect);
-          delete local.redirect;
+        const redirect = localStorage.redirect;
+        if (redirect && redirect !== url.pathname + url.search) {
+          replace(redirect);
+          localStorage.removeItem("redirect");
         } else {
           replace("/");
         }
