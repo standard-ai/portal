@@ -9,14 +9,13 @@
     "Standard Cognition (https://standard.ai/) <jobs@standard.ai>",
     "Maytee Chinavanichkit (https://github.com/mayt)",
     "Francisco Presencia (https://francisco.io/)",
-    "Mohamed Almahbashi (https://github.com/mohawow)",
+    "Mohamed Almahbashi (https://github.com/mohawow)"
   ],
   "license": "MIT",
   "main": "index.min.js",
   "files": [],
   "scripts": {
     "build": "webpack -c",
-    "gzip": "gzip -c index.min.js | wc -c && echo 'bytes'",
     "stats": "webpack -c --profile --json > webpack-stats.json"
   },
   "dependencies": {
