@@ -16,14 +16,15 @@
   "files": [],
   "scripts": {
     "build": "webpack -c",
-    "stats": "webpack -c --profile --json > webpack-stats.json"
+    "stats": "webpack -c --profile --json > webpack-stats.json",
+    "test": "jest"
   },
   "dependencies": {
     "styled-components": "^5.2.0"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
     "@auth0/auth0-spa-js": "^1.13.0",
@@ -33,8 +34,10 @@
     "auth0-js": "^9.14.0",
     "babel-loader": "^8.1.0",
     "babel-polyfill": "^6.26.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
+    "jest": "^26.6.3",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0",
+    "react-test": "^0.7.3",
     "regenerator-runtime": "^0.13.7",
     "use-async-effect": "^2.2.2",
     "webpack": "^4.44.2",
@@ -46,5 +49,10 @@
       "@babel/preset-react"
     ],
     "plugins": []
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ]
   }
 }
