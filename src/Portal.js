@@ -12,12 +12,13 @@ const { REACT_APP_AUTH_REDIRECT = "/" } = process.env;
 
 const replace = url => window.history.replaceState("", document.title, url);
 
-// There's a url query ?code=... from the redirect
+// There's a url query ?code=... or ?error= from the redirect
 const shouldAuth = url => {
-  return (
-    url.href.startsWith(makeAbsolute(REACT_APP_AUTH_REDIRECT)) &&
-    url.searchParams.has("code")
-  );
+  // If it is not the redirect url, quickly skip it
+  if (!url.href.startsWith(makeAbsolute(REACT_APP_AUTH_REDIRECT))) return false;
+
+  // If we have two of the possible redirect info attempt to parse it:
+  return url.searchParams.has("code") || url.searchParams.has("error");
 };
 
 // There's a token in localStorage; so there'll be an API call to verify it
