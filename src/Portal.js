@@ -93,7 +93,7 @@ export default ({ onUser, showProfile = true, children }) => {
   // case the page takes a bit long to load, so that the user knows that the
   // action was executed
   const onLogin = async () => {
-    local.redirect = window.location.pathname + window.location.search;
+    localStorage.redirect = window.location.pathname + window.location.search;
     setLoading(true);
     await auth.login();
   };
