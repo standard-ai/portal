@@ -183,7 +183,7 @@ If you don't like the default profile, you can set this prop to false and provid
 
 ```js
 // App.js
-import Portal, { useProfile } from "@standard/portal";
+import Portal, { useProfile, logout } from "@standard/portal";
 
 const Greeting = () => {
   const user = useProfile();
