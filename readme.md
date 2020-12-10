@@ -43,10 +43,10 @@ export default () => (
 
 ## Getting started
 
-This is the _quick guide_ on how to get started. First install this library:
+First install this library. You need to install `styled-components` as well if you don't have it yet:
 
 ```bash
-npm i @standard/portal
+npm i @standard/portal styled-components
 ```
 
 Then provide the Auth0 config as environment variables:
