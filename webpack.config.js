@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   externals: {
-    // Don't bundle react
+    // Don't bundle styled components
     "styled-components": {
       commonjs: "styled-components",
       commonjs2: "styled-components",
