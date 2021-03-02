@@ -16,6 +16,9 @@ const Floating = styled.div`
 `;
 
 const Picture = styled.img`
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 100%;
   border-radius: 50%;
   float: right;
@@ -23,9 +26,11 @@ const Picture = styled.img`
 `;
 
 const Box = styled.div`
-  position: fixed;
-  top: 80px;
-  right: 10px;
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  width: 300%;
+
   border: 2px solid #ccc;
   background: white;
   border-radius: 4px;
@@ -49,10 +54,16 @@ const Box = styled.div`
     height: 0;
     border: 8px solid black;
     top: -8px;
-    right: 20px;
+    /* width / 3 = width of img */
+    /* width / 3 - 16px (self-width) - 2px (margin) */
+    right: calc(33.33% / 2 - 14px);
     border-width: 0 8px 8px 8px;
     border-color: transparent transparent #ccc transparent;
   }
+`;
+
+const P = styled.p`
+  margin: 0;
 `;
 
 const Link = styled.button`
@@ -71,10 +82,10 @@ export default function Profile() {
   const user = useProfile();
   const [show, setShow] = useState(false);
   return (
-    <Floating>
+    <Floating className="standard-portal">
       <Picture onClick={() => setShow(!show)} src={user.img} />
       <Box visible={show}>
-        <div>{user.name}</div>
+        <P>{user.name}</P>
         <Link onClick={() => logout("/")}>Logout</Link>
       </Box>
     </Floating>

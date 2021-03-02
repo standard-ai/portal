@@ -71,9 +71,7 @@ export default () => (
 );
 ```
 
-Finally put an image on your `/portal-background.jpg` to use as the fullscreen background of the portal.
-
-This so far will only provide a plain frontend-only auth. But your data should be locked up behind auth, so you will need to pass the auth token at least to the API. For this you would usually use either the [`<Portal onUser={fn}>...</Portal>`](#portal) callback, or the [`await getToken()`](#await-gettoken) exported function.
+This so far will only provide a plain frontend-only auth. Your data should also locked up behind auth, so you will need to pass the auth token at least to the API. For this you would usually use either the [`<Portal onUser={fn}>...</Portal>`](#portal) callback, or the [`await getToken()`](#await-gettoken) (recommended) function.
 
 ## Configuration
 
@@ -117,6 +115,31 @@ Similarly, you can style children like:
 }
 
 .standard-portal button {
+  /* ... */
+}
+```
+
+Finally, you can also style the small profile menu through the class `.standard-profile`:
+
+```css
+.standard-profile {
+  /* Example: make the button a bit smaller */
+  width: 40px;
+  height: 40px;
+
+  /* Example: make it always be on the right size of a 1200px layout  */
+  right: calc(50% - 1200px / 2);
+}
+
+.standard-profile img {
+  /* ... */
+}
+
+.standard-profile p {
+  /* ... */
+}
+
+.standard-profile a {
   /* ... */
 }
 ```
