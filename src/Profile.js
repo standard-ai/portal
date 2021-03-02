@@ -82,7 +82,7 @@ export default function Profile() {
   const user = useProfile();
   const [show, setShow] = useState(false);
   return (
-    <Floating className="standard-portal">
+    <Floating className="standard-profile">
       <Picture onClick={() => setShow(!show)} src={user.img} />
       <Box visible={show}>
         <P>{user.name}</P>
