@@ -94,6 +94,30 @@ REACT_APP_AUTH_RETURN_TO=/
 
 ## Styling
 
+To add styles, you can use the classes `.standard-portal` and `.standard-profile` within `styled components`' `createGlobalStyle`:
+
+```js
+import Portal from "@standard/portal";
+import { createGlobalStyle } from "styled-components";
+
+const SmallerProfile = createGlobalStyle`
+  .standard-profile {
+    width: 40px;
+    height: 40px;
+    top: 5px;
+  }
+`;
+
+export default function App() {
+  return (
+    <Portal>
+      <SmallerProfile />
+      {/* The rest of the App here */}
+    </Portal>
+  );
+}
+```
+
 You can edit the main screen CSS through the class `.standard-portal`. For example, let's say we want to add a background [from svgbackgrounds.com](https://www.svgbackgrounds.com/):
 
 ```
