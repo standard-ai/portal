@@ -62,7 +62,7 @@ const Box = styled.div`
   }
 `;
 
-const P = styled.p`
+const Name = styled.p`
   margin: 0;
 `;
 
@@ -85,7 +85,7 @@ export default function Profile() {
     <Floating className="standard-profile">
       <Picture onClick={() => setShow(!show)} src={user.img} />
       <Box visible={show}>
-        <P>{user.name}</P>
+        <Name>{user.name}</Name>
         <Link onClick={() => logout("/")}>Logout</Link>
       </Box>
     </Floating>
