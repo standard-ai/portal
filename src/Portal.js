@@ -21,10 +21,19 @@ const shouldAuth = url => {
   return url.searchParams.has("code") || url.searchParams.has("error");
 };
 
+function getCookie(name) {
+  const v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+  try {
+    const data = v ? JSON.parse(v[2]) : null;
+    return data;
+  } catch (error) {
+    return v ? v[2] : null;
+  }
+}
+
 // There's a token in localStorage; so there'll be an API call to verify it
 const shouldGetProfile = () => {
-  const keys = Object.keys(localStorage);
-  return Boolean(keys.find(key => /auth0spajs/.test(key)));
+  return getCookie("auth0.is.authenticated");
 };
 
 // try to parse query param if this is a login callback
@@ -98,7 +107,7 @@ export default ({ onUser, showProfile = true, children }) => {
     await auth.login();
   };
 
-  if (user) {
+  if (user && !loading) {
     return (
       <AuthContext.Provider value={user}>
         {showProfile && <Profile />}
@@ -110,7 +119,7 @@ export default ({ onUser, showProfile = true, children }) => {
   return (
     <div>
       <Spinner active={loading} />
-      <Login error={error} onLogin={onLogin} />
+      {loading ? null : <Login error={error} onLogin={onLogin} />}
     </div>
   );
 };
