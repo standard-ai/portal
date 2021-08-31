@@ -8,7 +8,6 @@ const FullPage = styled.div`
   height: 100vh;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
   transform: scale(50%);
   background: white;
   opacity: 0;
